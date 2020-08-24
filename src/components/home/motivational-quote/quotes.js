@@ -466,3 +466,5 @@ const quotes = [
     author: 'Zig Ziglar',
   },
 ];
+
+export default quotes;

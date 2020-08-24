@@ -1,14 +1,17 @@
 import React from 'react';
-import '../../styles/home/home.css';
+import AccountOverview from './account-overview/account-overview';
+import MotivationalQuote from './motivational-quote/motivation';
 
 function Home() {
   return (
     <div className="home">
+      <div className="top-center"></div>
       <div className="block-center">
-        <div className="title"></div>
-        <div className="amount"></div>
+        <AccountOverview />
       </div>
-      <div className="block-bottom"></div>
+      <div className="block-bottom">
+        <MotivationalQuote />
+      </div>
     </div>
   );
 }
