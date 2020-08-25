@@ -1,5 +1,5 @@
 #root {
-  height: 100%;
+  height: inherit;
 }
 
 .MuiButton-label {
@@ -8,26 +8,32 @@
 
 .home {
   height: inherit;
-  background-color: #43474b;
-  padding: 20px;
+  padding: 40px;
   box-sizing: border-box;
 }
 
 .home > .block-top {
   height: 20%;
+  min-height: 100px;
 }
 
 .home > .block-center {
   height: 60%;
+  min-height: 330px;
 }
 
 .home > .block-bottom {
   height: 20%;
+  min-height: 120px;
+  min-height: 100px;
 }
 
 .block-top {
   display: flex;
-  justify-content: end;
+}
+
+.block-top > .align-btn-right {
+  margin-left: auto;
 }
 
 .block-center,

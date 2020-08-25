@@ -11,13 +11,13 @@
 
 .account > .title {
   color: white;
-  font-size: 60px;
+  font-size: 80px;
   padding-bottom: 20px;
   font-family: 'Amatic SC', cursive;
 }
 
 .account > .amount {
   color: #27b73d;
-  font-size: 40px;
+  font-size: 60px;
   font-family: 'Lato', sans-serif;
 }
