@@ -1,0 +1,37 @@
+#root {
+  height: 100%;
+}
+
+.MuiButton-label {
+  color: white;
+}
+
+.home {
+  height: inherit;
+  background-color: #43474b;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.home > .block-top {
+  height: 20%;
+}
+
+.home > .block-center {
+  height: 60%;
+}
+
+.home > .block-bottom {
+  height: 20%;
+}
+
+.block-top {
+  display: flex;
+  justify-content: end;
+}
+
+.block-center,
+.block-bottom {
+  display: flex;
+  justify-content: center;
+}

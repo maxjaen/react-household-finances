@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap&Lato&display=swap');
+
+.account {
+  height: 100%;
+  width: 600px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  text-align: center;
+}
+
+.account > .title {
+  color: white;
+  font-size: 60px;
+  padding-bottom: 20px;
+  font-family: 'Amatic SC', cursive;
+}
+
+.account > .amount {
+  color: #27b73d;
+  font-size: 40px;
+  font-family: 'Lato', sans-serif;
+}
