@@ -8,23 +8,22 @@
 
 .home {
   height: inherit;
-  padding: 40px;
-  box-sizing: border-box;
 }
 
 .home > .block-top {
-  height: 20%;
+  height: 20vh;
   min-height: 100px;
+  box-sizing: border-box;
+  padding: 40px;
 }
 
 .home > .block-center {
-  height: 60%;
-  min-height: 330px;
+  height: 60vh;
+  min-height: 250px;
 }
 
 .home > .block-bottom {
-  height: 20%;
-  min-height: 120px;
+  height: 20vh;
   min-height: 100px;
 }
 
