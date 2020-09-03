@@ -3,8 +3,6 @@ import React from 'react';
 import Home from './components/home/home';
 import Payment from './components/payment/payment';
 import Budget from './components/budget/budget';
-// STYLES
-import './App.css';
 
 function App() {
   return (
