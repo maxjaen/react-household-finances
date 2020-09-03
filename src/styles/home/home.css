@@ -8,6 +8,7 @@
 
 .home {
   height: inherit;
+  background-color: #222;
 }
 
 .home > .block-top {
@@ -20,11 +21,13 @@
 .home > .block-center {
   height: 60vh;
   min-height: 250px;
+  padding: 0 40px;
 }
 
 .home > .block-bottom {
   height: 20vh;
   min-height: 100px;
+  padding: 0 40px;
 }
 
 .block-top {
