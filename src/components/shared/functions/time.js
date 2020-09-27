@@ -1,3 +1,4 @@
+// TODO do not overwrite prototype, use ES6 notation instead
 Date.prototype.getWeek = () => {
   var firstOfJanuary = new Date(this.getFullYear(), 0, 1);
   return Math.ceil(
@@ -44,4 +45,17 @@ const isCurrentYear = (date) => {
   const currentDate = createDate();
 
   return inputDate.getFullYear() === currentDate.getFullYear();
+};
+
+const isLaterDate = (later, earlier) => {
+  return new Date(later).getTime() > new Date(earlier).getTime();
+};
+
+export {
+  createDate,
+  isToday,
+  isCurrentWeek,
+  isCurrentMonth,
+  isCurrentYear,
+  isLaterDate,
 };

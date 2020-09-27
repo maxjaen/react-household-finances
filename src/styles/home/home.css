@@ -6,25 +6,25 @@
   color: white;
 }
 
-.home {
+.home .main {
   height: inherit;
   background-color: #222;
 }
 
-.home > .block-top {
+.main .block-top {
   height: 20vh;
   min-height: 100px;
   box-sizing: border-box;
   padding: 40px;
 }
 
-.home > .block-center {
+.main .block-center {
   height: 60vh;
   min-height: 250px;
   padding: 0 40px;
 }
 
-.home > .block-bottom {
+.main .block-bottom {
   height: 20vh;
   min-height: 100px;
   padding: 0 40px;
@@ -42,4 +42,32 @@
 .block-bottom {
   display: flex;
   justify-content: center;
+}
+
+.input {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #2f2e2e7d;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input > .mask {
+  height: 90vh;
+  width: 90vw;
+  background: #353333;
+  border: 2px solid white;
+}
+
+.input-button {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+}
+
+.hidden {
+  display: none;
 }
