@@ -24,7 +24,7 @@ function AccountOverview() {
 
   return (
     <div className="account">
-      <div className="title">Account Balance</div>
+      <div className="title">Your current net worth</div>
       <div className="amount">{displayableBalance}</div>
     </div>
   );

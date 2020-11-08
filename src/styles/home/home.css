@@ -1,50 +1,47 @@
+/* Do not touch */
+
 #root {
   height: inherit;
 }
 
+/* Media Queries */
+
+@media screen and (max-width: 1200px) {
+  .content {
+    margin-left: 62px;
+  }
+  .navigation-bar {
+    width: 62px;
+  }
+  .navigation-list-item-icon {
+    margin-bottom: 10px;
+  }
+  .navigation-list-item-name {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .content {
+    margin-left: 220px;
+  }
+  .navigation-bar {
+    width: 220px;
+  }
+}
+
+/* Material UI Colors */
+
 .MuiButton-label {
   color: white;
 }
-
-.home .main {
-  height: inherit;
-  background-color: #222;
+.MuiSvgIcon-root {
+  color: white;
 }
 
-.main .block-top {
-  height: 20vh;
-  min-height: 100px;
-  box-sizing: border-box;
-  padding: 40px;
-}
+/* Input Dialog Field  */
 
-.main .block-center {
-  height: 60vh;
-  min-height: 250px;
-  padding: 0 40px;
-}
-
-.main .block-bottom {
-  height: 20vh;
-  min-height: 100px;
-  padding: 0 40px;
-}
-
-.block-top {
-  display: flex;
-}
-
-.block-top > .align-btn-right {
-  margin-left: auto;
-}
-
-.block-center,
-.block-bottom {
-  display: flex;
-  justify-content: center;
-}
-
-.input {
+.input-dialog-field {
   position: fixed;
   height: 100%;
   width: 100%;
@@ -55,19 +52,65 @@
   align-items: center;
 }
 
-.input > .mask {
+.input-dialog-field > .mask {
   height: 90vh;
   width: 90vw;
-  background: #353333;
-  border: 2px solid white;
+  background: #424242;
+  border: 2px solid #090808;
 }
 
-.input-button {
-  position: fixed;
-  bottom: 40px;
-  left: 40px;
-}
+/* Helper rules */
 
 .hidden {
   display: none;
+}
+
+/* Home Component */
+
+.navigation-bar {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #090808;
+  border-right: 1px solid #535252;
+}
+
+.navigation-bar > .navigation-list {
+  margin-top: 60px;
+  width: 90%;
+  color: white;
+}
+
+.navigation-list > .navigation-divider {
+  margin: 20px 0 20px 0;
+  width: 100%;
+  height: 1px;
+  border-bottom: 2px solid #535252;
+}
+
+.content {
+  background-color: #1b1b1b;
+  height: 2000px; /* TODO replace when more components defined */
+}
+
+.content > .overview-component {
+  background-color: #090808;
+  border-bottom: 2px solid #535252;
+}
+
+.overview-component > .overview-top {
+  padding-top: 60px;
+}
+
+.overview-component > .overview-top,
+.overview-component > .overview-bottom {
+  display: flex;
+  justify-content: center;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 50px;
 }
