@@ -1,11 +1,11 @@
 import React from 'react';
-import accountTestData from '../../../data/account-test-data';
-import '../../../styles/home/account-overview/account-overview.css';
+import accountTestData from '../../../../data/account-test-data';
+import '../../../../styles/home/overview/account-overview/account-overview.css';
 import {
   retrieveLastInitial,
   retrieveTransactionsAfterLastInitial,
   transactionPipe,
-} from '../../shared/functions/topic/account-balance-activity';
+} from '../../../shared/functions/topic/account-balance-activity';
 
 const calculateBalance = () => {
   const lastInitial = retrieveLastInitial();

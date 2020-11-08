@@ -61,6 +61,11 @@
 
 /* Helper rules */
 
+.title {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
 .hidden {
   display: none;
 }
@@ -100,10 +105,6 @@
 .content > .overview-component {
   background-color: #090808;
   border-bottom: 2px solid #535252;
-}
-
-.overview-component > .overview-top {
-  padding-top: 60px;
 }
 
 .overview-component > .overview-top,

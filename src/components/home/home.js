@@ -1,5 +1,12 @@
+// React
 import React from 'react';
-// MATERIAL ELEMENTS
+// Components
+import AccountOverview from './overview/account-overview/account-overview';
+import MotivationalQuote from './overview/motivational-quote/motivational-quote';
+import Account from './account/account'
+// Styles
+import '../../styles/home/home.css';
+// Material UI Elements
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -15,17 +22,14 @@ import ShoppingCartTwoToneIcon from '@material-ui/icons/ShoppingCartTwoTone';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import TocIcon from '@material-ui/icons/Toc';
 import ZoomOutMapIcon from '@material-ui/icons/ZoomOutMap';
-// Components
-import AccountOverview from './account-overview/account-overview';
-import MotivationalQuote from './motivational-quote/motivational-quote';
-// Styles
-import '../../styles/home/home.css';
 
 function Home() {
 
   /* Created implementation for scrolling to navigation item */
   // TODO https://www.robinwieruch.de/react-scroll-to-item
   const overviewRef = React.createRef();
+  const accountRef = React.createRef();
+
   const scrollIntoView = (ref) => {
     ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
@@ -57,7 +61,8 @@ function Home() {
                 },
                 {
                   name: 'Accounts',
-                  icon: <AccountBalanceTwoToneIcon /> 
+                  icon: <AccountBalanceTwoToneIcon />,
+                  click: () => scrollIntoView(accountRef)
                 },
                 {
                   name: 'Income & Expenses',
@@ -125,6 +130,13 @@ function Home() {
     </div>
     )
   }
+  const displayAccountComponent = () => {
+    return (
+      <div className="account-component" ref={accountRef}>
+          <Account />  
+    </div>
+    )
+  }
 
   /* Set state for input dialog shown. */
   const [inputDialogField, setShown] = React.useState(false);
@@ -143,6 +155,7 @@ function Home() {
       </div>
       <div className="content">  
           {displayOverViewComponent()}
+          {displayAccountComponent()}
       </div>
     </div>
   );

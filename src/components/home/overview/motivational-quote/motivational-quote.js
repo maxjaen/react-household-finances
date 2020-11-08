@@ -1,6 +1,6 @@
 import React from 'react';
 import quotes from './quotes';
-import '../../../styles/home/motivational-quote/motivational-quote.css';
+import '../../../../styles/home/overview/motivational-quote/motivational-quote.css';
 
 const generateRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
