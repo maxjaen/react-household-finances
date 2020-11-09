@@ -23,8 +23,8 @@ function AccountOverview() {
   const displayableBalance = balance.toFixed(2);
 
   return (
-    <div className="account">
-      <div className="title">Your current net worth</div>
+    <div className="balance">
+      <div className="title">Your balance</div>
       <div className="amount">{displayableBalance}</div>
     </div>
   );

@@ -1,0 +1,53 @@
+.input-mask {
+  background: #000000e6;
+  border: 2px solid #222020;
+  padding: 40px;
+}
+
+.input-mask > .top-block {
+  height: 90%;
+}
+
+.input-mask > .bottom-block {
+  height: 10%;
+  display: flex;
+  align-items: end;
+}
+
+.input-mask > .top-block,
+.input-mask > .bottom-block {
+  color: white;
+}
+
+.top-block {
+  margin-bottom: 40px;
+}
+
+.top-block > .text {
+  font-size: 30px;
+}
+
+.top-block > .mask-divider {
+  margin: 20px 0 20px 0;
+  width: 100%;
+  height: 1px;
+  border-bottom: 2px solid #222020;
+}
+
+.top-block > .input > .name,
+.top-block > .input > .description {
+  margin: 15px 0 15px 0;
+}
+
+.top-block .input-title {
+  margin-bottom: 5px;
+}
+
+.top-block .input-text {
+  width: -moz-available;
+}
+
+.bottom-block > .submit,
+.bottom-block > .cancel {
+  margin-right: 10px;
+}

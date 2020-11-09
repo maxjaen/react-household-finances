@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap&Lato&display=swap');
 
-.account {
+.balance {
   height: 100%;
   width: 600px;
   display: flex;
@@ -9,15 +9,12 @@
   text-align: center;
 }
 
-.account > .title {
+.balance > .title {
   color: white;
-  font-size: 80px;
-  padding-bottom: 20px;
-  font-family: 'Amatic SC', cursive;
 }
 
-.account > .amount {
-  color: #27b73d;
+.balance > .amount {
+  color: #d52859;
   font-size: 60px;
   font-family: 'Lato', sans-serif;
 }

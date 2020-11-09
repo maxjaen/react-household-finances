@@ -14,7 +14,8 @@
     width: 62px;
   }
   .navigation-list-item-icon {
-    margin-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
   .navigation-list-item-name {
     display: none;
@@ -32,11 +33,14 @@
 
 /* Material UI Colors */
 
+.MuiSvgIcon-root,
 .MuiButton-label {
   color: white;
 }
-.MuiSvgIcon-root {
-  color: white;
+
+.navigation-bar .MuiSvgIcon-root:hover,
+.navigation-bar .MuiListItem-button:hover {
+  color: gold;
 }
 
 /* Input Dialog Field  */
@@ -45,18 +49,11 @@
   position: fixed;
   height: 100%;
   width: 100%;
-  background-color: #2f2e2e7d;
+  background-color: #000000b0;
   z-index: 5;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.input-dialog-field > .mask {
-  height: 90vh;
-  width: 90vw;
-  background: #424242;
-  border: 2px solid #090808;
 }
 
 /* Helper rules */
@@ -64,6 +61,8 @@
 .title {
   padding-top: 60px;
   padding-bottom: 40px;
+  font-size: 80px;
+  font-family: 'Amatic SC', cursive;
 }
 
 .hidden {
@@ -97,11 +96,6 @@
   border-bottom: 2px solid #535252;
 }
 
-.content {
-  background-color: #1b1b1b;
-  height: 2000px; /* TODO replace when more components defined */
-}
-
 .content > .overview-component {
   background-color: #090808;
   border-bottom: 2px solid #535252;
@@ -114,4 +108,19 @@
   padding-left: 25px;
   padding-right: 25px;
   padding-bottom: 50px;
+}
+
+.content > .wait-screen {
+  background-color: #090808;
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wait-screen > .wait-text {
+  color: white;
+  padding-bottom: 20px;
+  font-size: 30px;
 }

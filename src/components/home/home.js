@@ -1,52 +1,58 @@
-// React
 import React from 'react';
-// Components
 import AccountOverview from './overview/account-overview/account-overview';
 import MotivationalQuote from './overview/motivational-quote/motivational-quote';
-import Account from './account/account'
-// Styles
+import Account from './account/account';
+import InputMask from './../shared/components/input-mask';
+import {get} from '../../components/shared/functions/http.js'
 import '../../styles/home/home.css';
-// Material UI Elements
-import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-// Material UI Icons
 import BarChartIcon from '@material-ui/icons/BarChart';
 import ShareTwoToneIcon from '@material-ui/icons/ShareTwoTone';
 import ListAltTwoToneIcon from '@material-ui/icons/ListAltTwoTone';
 import AccountBalanceTwoToneIcon from '@material-ui/icons/AccountBalanceTwoTone';
 import TrackChangesTwoToneIcon from '@material-ui/icons/TrackChangesTwoTone';
 import ShoppingCartTwoToneIcon from '@material-ui/icons/ShoppingCartTwoTone';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import TocIcon from '@material-ui/icons/Toc';
 import ZoomOutMapIcon from '@material-ui/icons/ZoomOutMap';
 
-function Home() {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}));
 
-  /* Created implementation for scrolling to navigation item */
+const scrollIntoView = (ref) => {
+  ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
+function Home() {
+  const classes = useStyles();
+
+  const [accounts, setAccounts] = React.useState();
+  const [inputDialogField, setShown] = React.useState(false);
+  const toggleDialogField = () => {
+    setShown(!inputDialogField);
+  };
+
+  // Created implementation for scrolling to navigation item
   // TODO https://www.robinwieruch.de/react-scroll-to-item
   const overviewRef = React.createRef();
   const accountRef = React.createRef();
 
-  const scrollIntoView = (ref) => {
-    ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
-  /* Here are the child html components declared for better readability. */
   const displayInputDialogField = () => {
     return (
       <div className={inputDialogField ? 'input-dialog-field' : 'hidden'}>
-        <div className="mask">
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => toggleDialogField()}
-          >
-            ✖️ Cancel
-          </Button>
-        </div>
+        <InputMask setShown={setShown}/>
       </div>
     );
   };
@@ -67,16 +73,8 @@ function Home() {
                 {
                   name: 'Income & Expenses',
                   icon: <TocIcon />,
-                }].map((entry) => (
-                <ListItem button key={entry.name} onClick={entry.click}>
-                  <ListItemIcon className="navigation-list-item-icon" title={entry.name}>{entry.icon}</ListItemIcon>
-                  <ListItemText className="navigation-list-item-name" primary={entry.name} />
-                </ListItem>
-              ))}
-            </List>
-            <div className="navigation-divider"></div>
-            <List>
-              {[{
+                },
+                {
                   name: 'Goals',
                   icon: <TrackChangesTwoToneIcon /> 
                 },
@@ -92,7 +90,7 @@ function Home() {
                   name: 'Logbook',
                   icon: <ListAltTwoToneIcon />
                 }].map((entry) => (
-                <ListItem button key={entry.name}>
+                <ListItem button key={entry.name} onClick={entry.click}>
                   <ListItemIcon className="navigation-list-item-icon" title={entry.name}>{entry.icon}</ListItemIcon>
                   <ListItemText className="navigation-list-item-name" primary={entry.name} />
                 </ListItem>
@@ -101,6 +99,10 @@ function Home() {
             <div className="navigation-divider"></div>
             <List>
               {[{
+                name: 'New Account',
+                icon: <AddCircleIcon /> ,
+                click: () => toggleDialogField()
+              },{
                 name: 'New Transaction',
                 icon: <AddCircleOutlineIcon /> ,
                 click: () => toggleDialogField()
@@ -117,7 +119,7 @@ function Home() {
             </List>
         </div>
     );
-  }
+  };
   const displayOverViewComponent = () => {
     return (
       <div className="overview-component" ref={overviewRef}>
@@ -129,34 +131,44 @@ function Home() {
           </div>   
     </div>
     )
-  }
+  };
   const displayAccountComponent = () => {
     return (
       <div className="account-component" ref={accountRef}>
-          <Account />  
-    </div>
+          <Account accounts={accounts}/>  
+      </div>
     )
-  }
-
-  /* Set state for input dialog shown. */
-  const [inputDialogField, setShown] = React.useState(false);
-  const toggleDialogField = () => {
-    setShown(!inputDialogField);
+  };
+  const displayContent = () => {
+    return !!accounts ? 
+      <div className="content">  
+          {displayOverViewComponent()}
+          {displayAccountComponent()}
+      </div>
+      :
+      <div className="content">  
+          <div className="wait-screen">
+            <div className="wait-text">Please wait a moment..</div>
+            <div className={classes.root}>
+              <CircularProgress />
+            </div>
+          </div>
+      </div>
   };
 
-  /**
-   * Returns rendered html page.
-   */
+  React.useEffect(() => {
+    get('account').then(e => {
+      setAccounts(e);
+    });  
+  }, []);
+
   return (
     <div className="home-component">
       {displayInputDialogField()}
       <div className="navigation-bar">
         {displayNavigationBar()}
       </div>
-      <div className="content">  
-          {displayOverViewComponent()}
-          {displayAccountComponent()}
-      </div>
+      {displayContent()}
     </div>
   );
 }
