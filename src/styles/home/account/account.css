@@ -50,18 +50,17 @@
   padding: 20px;
   font-size: 30px;
   text-align: center;
-  color: white;
   border: 1px solid #535252;
   background-color: #090808;
 }
 
 .account-item:hover {
-  background-color: black;
+  background-color: #000000b3;
   cursor: pointer;
 }
 
 .account-item > .account-title,
-.account-item > .account-balance {
+.account-item > .account-content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,6 +72,50 @@
   color: #090808;
 }
 
-.account-item > .account-balance {
+.account-item > .account-content {
   height: 70%;
+}
+
+.account-content > .account-details,
+.account-content > .account-nav {
+  height: 100%;
+}
+.account-content > .account-details,
+.account-content > .account-nav {
+  display: grid;
+  grid-template-columns: auto;
+  grid-row-gap: 10px;
+}
+
+.account-content > .account-details {
+  width: -moz-available;
+  height: 80%;
+  font-size: 20px;
+}
+
+.account-content > .account-nav {
+  width: 50px;
+  height: 80%;
+}
+
+.account-nav > .account-update,
+.account-nav > .account-delete {
+  background-color: #d52859;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.account-nav > .account-update > .MuiSvgIcon-root,
+.account-nav > .account-delete > .MuiSvgIcon-root {
+  color: black;
+}
+
+.account-details > .account-description,
+.account-details > .account-balance {
+  color: white;
+  background-color: #222121;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
 }

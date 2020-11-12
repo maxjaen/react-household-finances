@@ -36,4 +36,22 @@ const post = async (data, endpoint) => {
   } 
 }
 
-export { get, post };
+const remove = async (id, endpoint) => {
+  const settings = {
+      method: 'DELETE',
+      body: JSON.stringify({id: id}),
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+      }
+  };
+  try {
+      const fetchResponse = await fetch(BASE_URL + SLASH + endpoint + SLASH + id, settings);
+      const response = await fetchResponse.text();
+      return response;
+  } catch (e) {
+      return e;
+  } 
+}
+
+export { get, post, remove };

@@ -10,8 +10,10 @@
 
 .input-mask > .bottom-block {
   height: 10%;
-  display: flex;
   align-items: end;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 20px;
 }
 
 .input-mask > .top-block,
@@ -45,9 +47,4 @@
 
 .top-block .input-text {
   width: -moz-available;
-}
-
-.bottom-block > .submit,
-.bottom-block > .cancel {
-  margin-right: 10px;
 }

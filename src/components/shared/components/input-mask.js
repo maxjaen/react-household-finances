@@ -14,6 +14,7 @@ const useStyles = makeStyles({
     color: 'white',
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    height: '34px',
   },
   label: {
     textTransform: 'capitalize',
@@ -21,12 +22,15 @@ const useStyles = makeStyles({
 });
 
 function InputMask(props) {
-
+  
+  const buttonClasses = useStyles();
   const [name, setName] = React.useState('');
+  const resetInput = () => {
+    setName('')
+    setDescription('')
+  }
   const [description, setDescription] = React.useState('');
   const newAccount = {"name": name, "description": description, "transactions": []};   
-
-  const classes = useStyles();
   
   return (
     <div className="input-mask">
@@ -46,21 +50,21 @@ function InputMask(props) {
       </div>
       <div className="bottom-block">
         <Button className="submit" classes={{
-            root: classes.root, // class name, e.g. `classes-nesting-root-x`
-            label: classes.label, // class name, e.g. `classes-nesting-label-x`
+            root: buttonClasses.root,
+            label: buttonClasses.label,
           }}
           onClick={() => {
             post(newAccount, accountEndpoint).then(response => {
               console.log(response);
               props.setShown(false);
-              setName('')
-              setDescription('')
+              props.getAccounts();
+              resetInput();
             });
           }}>✖️ Submit
         </Button>
         <Button className="cancel" classes={{
-          root: classes.root, // class name, e.g. `classes-nesting-root-x`
-          label: classes.label, // class name, e.g. `classes-nesting-label-x`
+          root: buttonClasses.root, // class name, e.g. `classes-nesting-root-x`
+          label: buttonClasses.label, // class name, e.g. `classes-nesting-label-x`
         }}
           onClick={() => props.setShown(false)}>✖️ Cancel
         </Button>

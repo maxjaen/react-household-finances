@@ -36,29 +36,35 @@ const scrollIntoView = (ref) => {
 }
 
 function Home() {
-  const classes = useStyles();
-
+  const circularProgressClasses = useStyles();
   const [accounts, setAccounts] = React.useState();
   const [inputDialogField, setShown] = React.useState(false);
   const toggleDialogField = () => {
     setShown(!inputDialogField);
   };
-
+  
   // Created implementation for scrolling to navigation item
   // TODO https://www.robinwieruch.de/react-scroll-to-item
   const overviewRef = React.createRef();
   const accountRef = React.createRef();
 
-  const displayInputDialogField = () => {
+  const getAccounts = () => {
+    get('account').then(data => {
+      setAccounts(data);
+    });
+  }
+
+  const inputDialog = () => {
     return (
       <div className={inputDialogField ? 'input-dialog-field' : 'hidden'}>
-        <InputMask setShown={setShown}/>
+        <InputMask setShown={setShown} getAccounts={getAccounts}/>
       </div>
     );
   };
-  const displayNavigationBar = () => {
+  const navigationBar = () => {
     return (
-      <div className="navigation-list">
+      <div className="navigation-bar">
+        <div className="navigation-list">
             <List>
               {[{
                   name: 'Overview',
@@ -89,6 +95,10 @@ function Home() {
                 {
                   name: 'Logbook',
                   icon: <ListAltTwoToneIcon />
+                },
+                {
+                  name: 'Settings',
+                  icon: <BarChartIcon />
                 }].map((entry) => (
                 <ListItem button key={entry.name} onClick={entry.click}>
                   <ListItemIcon className="navigation-list-item-icon" title={entry.name}>{entry.icon}</ListItemIcon>
@@ -106,10 +116,6 @@ function Home() {
                 name: 'New Transaction',
                 icon: <AddCircleOutlineIcon /> ,
                 click: () => toggleDialogField()
-              },
-              {
-                name: 'Settings',
-                icon: <BarChartIcon />
               }].map((entry) => (
                 <ListItem button key={entry.name} onClick={entry.click}>
                   <ListItemIcon className="navigation-list-item-icon" title={entry.name}>{entry.icon}</ListItemIcon>
@@ -118,9 +124,10 @@ function Home() {
               ))}
             </List>
         </div>
+      </div>
     );
   };
-  const displayOverViewComponent = () => {
+  const overviewComponent = () => {
     return (
       <div className="overview-component" ref={overviewRef}>
           <div className="overview-top">
@@ -132,24 +139,25 @@ function Home() {
     </div>
     )
   };
-  const displayAccountComponent = () => {
+  const accountComponent = () => {
     return (
       <div className="account-component" ref={accountRef}>
-          <Account accounts={accounts}/>  
+          <Account accounts={accounts} getAccounts={getAccounts}/>  
       </div>
     )
   };
-  const displayContent = () => {
-    return !!accounts ? 
+  const content = () => {
+    return !!accounts && !(accounts instanceof Error) // TODO refactoring
+      ? 
       <div className="content">  
-          {displayOverViewComponent()}
-          {displayAccountComponent()}
+          {overviewComponent()}
+          {accountComponent()}
       </div>
       :
       <div className="content">  
           <div className="wait-screen">
             <div className="wait-text">Please wait a moment..</div>
-            <div className={classes.root}>
+            <div className={circularProgressClasses.root}>
               <CircularProgress />
             </div>
           </div>
@@ -157,18 +165,14 @@ function Home() {
   };
 
   React.useEffect(() => {
-    get('account').then(e => {
-      setAccounts(e);
-    });  
+    getAccounts()
   }, []);
 
   return (
     <div className="home-component">
-      {displayInputDialogField()}
-      <div className="navigation-bar">
-        {displayNavigationBar()}
-      </div>
-      {displayContent()}
+      {inputDialog()}
+      {navigationBar()}
+      {content()}
     </div>
   );
 }
